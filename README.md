@@ -59,6 +59,14 @@ $ docker compose up
 # The wiki will initialize in the <http://localhost:8000>
 ```
 
+Once there, you'll have to run through the installation wizard and, in the end, you'll be given a `LocalSettings.php` file. You have to download it and copy it into the container with the next command:
+
+```bash
+$ docker cp c:\path\to\downloaded\file wiki-app:/var/www/html/
+```
+
+Now with the configurations file already in the container, you can uncomment the line for this file in `mediawiki` > `volumes`, in the `docker-compose.yml` file.
+
 ## :memo: License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.

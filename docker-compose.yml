@@ -1,0 +1,32 @@
+services:
+    mediawiki:
+        image: mediawiki
+        restart: always
+        depends_on:
+            - database
+        ports:
+            - 8000:80
+        networks:
+            - db_network
+        volumes:
+            #- ./LocalSettings.php:/var/www/html/LocalSettings.php
+            - wiki_images:/var/www/html/images
+        container_name: wiki-app
+
+    database:
+        image: mariadb:11.2
+        networks:
+            - db_network
+        env_file:
+            - ./db.env
+        volumes:
+            - wiki_database:/var/lib/mysql
+        container_name: wiki-database
+    
+networks:
+    db_network:
+        driver: bridge
+
+volumes:
+    wiki_database:
+    wiki_images:
