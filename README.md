@@ -76,6 +76,19 @@ php > echo bin2hex(random_bytes(8));
 
 - You can check the installed extensions in the [Special:Version](http://localhost:8000/index.php/Special:Version) page.
 
+## :wrench: Debugging
+
+If you want to have direct access to the database, you can use the `debug` configuration for docker-compose.
+This adds a `PHPMyAdmin` service and exposes the DB port (`3306`) in case you want to access it with DBeaver or another DB manager.
+
+```bash
+# Start the containers
+$ docker compose -f docker-compose.yml -f docker-compose.debug.yml up -d
+
+# The wiki will initialize in the <http://localhost:8000>
+# PHPMyAdmin will initialize in the <http://localhost:8080>
+```
+
 ## :memo: License
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
