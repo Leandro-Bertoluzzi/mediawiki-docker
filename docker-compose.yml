@@ -1,15 +1,15 @@
 services:
     mediawiki:
-        image: mediawiki
-        restart: always
+        build: .
         depends_on:
             - database
+        env_file:
+            - ./wiki.env
         ports:
             - 8000:80
         networks:
             - db_network
         volumes:
-            #- ./LocalSettings.php:/var/www/html/LocalSettings.php
             - wiki_images:/var/www/html/images
         container_name: wiki-app
 
